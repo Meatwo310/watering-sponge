@@ -1,8 +1,8 @@
 package dev.meatwo310.watering_sponge;
 
 import com.mojang.logging.LogUtils;
-import dev.meatwo310.watering_sponge.registering.BlockRegistering;
-import dev.meatwo310.watering_sponge.registering.ItemRegistering;
+import dev.meatwo310.watering_sponge.register.BlockRegister;
+import dev.meatwo310.watering_sponge.register.ItemRegister;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.api.distmarker.Dist;
@@ -33,8 +33,8 @@ public class WateringSponge
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);
 
-        BlockRegistering.register(modEventBus);
-        ItemRegistering.register(modEventBus);
+        BlockRegister.register(modEventBus);
+        ItemRegister.register(modEventBus);
 
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);

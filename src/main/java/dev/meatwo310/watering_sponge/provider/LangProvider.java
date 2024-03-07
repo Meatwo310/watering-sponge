@@ -1,8 +1,9 @@
 package dev.meatwo310.watering_sponge.provider;
 
 import dev.meatwo310.watering_sponge.WateringSponge;
-import dev.meatwo310.watering_sponge.registering.BlockRegistering;
-import dev.meatwo310.watering_sponge.registering.ItemRegistering;
+import dev.meatwo310.watering_sponge.blocks.WateringSpongeBlockItem;
+import dev.meatwo310.watering_sponge.register.BlockRegister;
+import dev.meatwo310.watering_sponge.register.ItemRegister;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.common.data.LanguageProvider;
 
@@ -20,8 +21,9 @@ public abstract class LangProvider extends LanguageProvider {
         @Override
         protected void addTranslations() {
             add("itemGroup.watering_sponge", "Watering Sponge");
-            add(ItemRegistering.TEST_ITEM.get(), "Test Item");
-            add(BlockRegistering.WATERING_SPONGE.get(), "Watering Sponge");
+            add(ItemRegister.TEST_ITEM.get(), "Test Item");
+            add(BlockRegister.WATERING_SPONGE_ITEM.get(), "Watering Sponge");
+            add(WateringSpongeBlockItem.TOOLTIP_KEY, "§7A sponge that can fill water§r");
         }
     }
 
@@ -32,8 +34,9 @@ public abstract class LangProvider extends LanguageProvider {
 
         @Override
         protected void addTranslations() {
-            add(ItemRegistering.TEST_ITEM.get(), "テストアイテム");
-            add(BlockRegistering.WATERING_SPONGE.get(), "べちゃべちゃのスポンジ");
+            add(ItemRegister.TEST_ITEM.get(), "テストアイテム");
+            add(BlockRegister.WATERING_SPONGE_ITEM.get(), "逆スポンジ");
+            add(WateringSpongeBlockItem.TOOLTIP_KEY, "§7周囲を水浸しにしよう！§r");
         }
     }
 }

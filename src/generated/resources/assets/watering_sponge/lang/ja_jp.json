@@ -1,4 +1,5 @@
 {
-  "block.watering_sponge.watering_sponge": "べちゃべちゃのスポンジ",
-  "item.watering_sponge.test_item": "テストアイテム"
+  "block.watering_sponge.watering_sponge": "逆スポンジ",
+  "item.watering_sponge.test_item": "テストアイテム",
+  "tooltip.watering_sponge.watering_sponge": "§7周囲を水浸しにしよう！§r"
 }

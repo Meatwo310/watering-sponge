@@ -1,5 +1,6 @@
 {
   "block.watering_sponge.watering_sponge": "Watering Sponge",
   "item.watering_sponge.test_item": "Test Item",
-  "itemGroup.watering_sponge": "Watering Sponge"
+  "itemGroup.watering_sponge": "Watering Sponge",
+  "tooltip.watering_sponge.watering_sponge": "§7A sponge that can fill water§r"
 }

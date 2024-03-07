@@ -1,4 +1,4 @@
-package dev.meatwo310.watering_sponge.registering;
+package dev.meatwo310.watering_sponge.register;
 
 import dev.meatwo310.watering_sponge.WateringSponge;
 import dev.meatwo310.watering_sponge.provider.LangProvider;
@@ -9,7 +9,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = WateringSponge.MODID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
-public class ProviderRegistering {
+public class ProviderRegister {
     @SubscribeEvent
     public static void gatherData(GatherDataEvent event) {
         DataGenerator generator = event.getGenerator();
