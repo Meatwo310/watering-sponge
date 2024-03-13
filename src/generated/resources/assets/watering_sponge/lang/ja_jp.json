@@ -1,5 +1,7 @@
 {
-  "block.watering_sponge.watering_sponge": "逆スポンジ",
+  "block.watering_sponge.watering_sponge_medium": "逆スポンジ",
   "item.watering_sponge.test_item": "テストアイテム",
-  "tooltip.watering_sponge.watering_sponge": "§7周囲を水浸しにしよう！§r"
+  "tooltip.watering_sponge.block.watering_sponge.watering_sponge_medium.1": "§4これは周囲を水浸しにする§c危険な§r§4ブロックです！§r",
+  "tooltip.watering_sponge.block.watering_sponge.watering_sponge_medium.2": "§7設置された場所を高さの上限として、 周囲の空気や置き換え可能なブロックを水に置換します。§r",
+  "tooltip.watering_sponge.block.watering_sponge.watering_sponge_medium.3": "§7これをキャンセルするには、 はじめに設置したブロックを壊してください。§r"
 }

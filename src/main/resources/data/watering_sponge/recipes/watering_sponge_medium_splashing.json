@@ -1,0 +1,21 @@
+{
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "create"
+    }
+  ],
+  "type": "create:splashing",
+  "ingredients": [
+    {
+      "item": "minecraft:coarse_dirt"
+    }
+  ],
+  "results": [
+    {
+      "item": "watering_sponge:watering_sponge_medium",
+      "count": 1,
+      "chance": 1.00
+    }
+  ]
+}
