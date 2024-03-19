@@ -1,8 +1,12 @@
 {
+  "block.watering_sponge.watering_sponge_large": "Large Watering Sponge",
   "block.watering_sponge.watering_sponge_medium": "Watering Sponge",
   "item.watering_sponge.test_item": "Test Item",
   "itemGroup.watering_sponge": "Watering Sponge",
+  "tooltip.watering_sponge.block.watering_sponge.watering_sponge_large.1": "§4This is a §cVERY DANGEROUS§r §4block that will flood a large area!§r",
+  "tooltip.watering_sponge.block.watering_sponge.watering_sponge_large.2": "§7A larger Watering Sponge.§r",
+  "tooltip.watering_sponge.block.watering_sponge.watering_sponge_large.3": "§731x31 blocks will be replaced with water.§r",
   "tooltip.watering_sponge.block.watering_sponge.watering_sponge_medium.1": "§4This is a §cDANGEROUS§r §4block that will flood the surrounding area!§r",
-  "tooltip.watering_sponge.block.watering_sponge.watering_sponge_medium.2": "§7This replaces the surrounding air and replaceable blocks with water, with the placed location as the upper limit of height.§r",
+  "tooltip.watering_sponge.block.watering_sponge.watering_sponge_medium.2": "§7This replaces air, grass, etc. with water in a 15x15 block around it, with the placed location as the upper limit of height.§r",
   "tooltip.watering_sponge.block.watering_sponge.watering_sponge_medium.3": "§7To cancel this, destroy the block that was placed first.§r"
 }

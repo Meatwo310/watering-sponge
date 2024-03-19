@@ -1,6 +1,7 @@
 package dev.meatwo310.watering_sponge;
 
 import com.mojang.logging.LogUtils;
+import dev.meatwo310.watering_sponge.blocks.WateringSpongeBlock;
 import dev.meatwo310.watering_sponge.register.BlockEntityRegister;
 import dev.meatwo310.watering_sponge.register.BlockRegister;
 import dev.meatwo310.watering_sponge.register.ItemRegister;
@@ -37,9 +38,10 @@ public class WateringSponge
         MinecraftForge.EVENT_BUS.register(this);
     }
 
-    private void commonSetup(final FMLCommonSetupEvent event)
-    {
+    private void commonSetup(final FMLCommonSetupEvent event) {
         LOGGER.info("HELLO FROM COMMON SETUP");
+        ((WateringSpongeBlock)BlockRegister.WATERING_SPONGE_MEDIUM.get()).blockEntity = BlockEntityRegister.WATERING_SPONGE_MEDIUM;
+        ((WateringSpongeBlock)BlockRegister.WATERING_SPONGE_LARGE.get()).blockEntity = BlockEntityRegister.WATERING_SPONGE_LARGE;
     }
 
     // You can use SubscribeEvent and let the Event Bus discover methods to call

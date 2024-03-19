@@ -1,7 +1,11 @@
 {
+  "block.watering_sponge.watering_sponge_large": "大きな逆スポンジ",
   "block.watering_sponge.watering_sponge_medium": "逆スポンジ",
   "item.watering_sponge.test_item": "テストアイテム",
+  "tooltip.watering_sponge.block.watering_sponge.watering_sponge_large.1": "§4これは大きな範囲を水浸しにする§cとても危険な§r§4ブロックです！§r",
+  "tooltip.watering_sponge.block.watering_sponge.watering_sponge_large.2": "§7より大きな範囲を水に置換する逆スポンジ。§r",
+  "tooltip.watering_sponge.block.watering_sponge.watering_sponge_large.3": "§731x31ブロックを置き換えます。§r",
   "tooltip.watering_sponge.block.watering_sponge.watering_sponge_medium.1": "§4これは周囲を水浸しにする§c危険な§r§4ブロックです！§r",
-  "tooltip.watering_sponge.block.watering_sponge.watering_sponge_medium.2": "§7設置された場所を高さの上限として、 周囲の空気や置き換え可能なブロックを水に置換します。§r",
-  "tooltip.watering_sponge.block.watering_sponge.watering_sponge_medium.3": "§7これをキャンセルするには、 はじめに設置したブロックを壊してください。§r"
+  "tooltip.watering_sponge.block.watering_sponge.watering_sponge_medium.2": "§7設置された場所を高さの上限として、 周囲15x15ブロックの空気や草などを水に置換します。§r",
+  "tooltip.watering_sponge.block.watering_sponge.watering_sponge_medium.3": "§7置き換えをキャンセルするには、 はじめに設置したブロックを壊してください。§r"
 }

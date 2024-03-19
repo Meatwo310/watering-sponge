@@ -1,13 +1,12 @@
 package dev.meatwo310.watering_sponge.blockentitys;
 
 import dev.meatwo310.watering_sponge.WateringSponge;
-import dev.meatwo310.watering_sponge.register.BlockEntityRegister;
-import dev.meatwo310.watering_sponge.register.BlockRegister;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.PushReaction;
 import net.minecraft.world.phys.AABB;
@@ -16,22 +15,24 @@ import java.util.Objects;
 
 public class WateringSpongeBlockEntity extends BlockEntity {
     private int timer = 0;
-    private final int TIMER_THRESHOLD = 7;
-    private final int TIMER_LIMIT = 30 * TIMER_THRESHOLD;
     private final int RANGE_XZ;
     private final int RANGE_Y;
+    private final int TIMER_THRESHOLD;
+    private final int TIMER_LIMIT;
     private final boolean REPLACE_REPLACEABLE;
     private BlockPos originalPos;
     private boolean searchMore = true;
     public final Block NEW_BLOCK;
     public boolean alreadyNewBlock = false;
 
-    public WateringSpongeBlockEntity(BlockPos pos, BlockState state, int rangeXZ, int rangeY) {
-        super(BlockEntityRegister.WATERING_SPONGE_MEDIUM.get(), pos, state);
+    public WateringSpongeBlockEntity(BlockEntityType<WateringSpongeBlockEntity> blockEntityType, BlockPos pos, BlockState state, int rangeXZ, int rangeY) {
+        super(blockEntityType, pos, state);
         this.RANGE_XZ = rangeXZ;
         this.RANGE_Y = rangeY;
         this.NEW_BLOCK = Blocks.WATER;
         this.REPLACE_REPLACEABLE = true;
+        this.TIMER_THRESHOLD = 7;
+        this.TIMER_LIMIT = 30 * RANGE_XZ;
     }
 
     public static <T extends BlockEntity> void tick(Level level, BlockPos pos, BlockState state, T be) {
@@ -130,7 +131,7 @@ public class WateringSpongeBlockEntity extends BlockEntity {
             ));
         }
 
-        level.setBlockAndUpdate(pos, BlockRegister.WATERING_SPONGE_MEDIUM.get().defaultBlockState());
+        level.setBlockAndUpdate(pos, blockEntity.getBlockState().getBlock().defaultBlockState());
         final WateringSpongeBlockEntity e = (WateringSpongeBlockEntity) level.getBlockEntity(pos);
         if (Objects.isNull(e)) {
             WateringSponge.LOGGER.warn("BlockEntity is null");

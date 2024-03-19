@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "watering_sponge:watering_sponge_medium"
+    }
+  },
+  "result": {
+    "item": "watering_sponge:watering_sponge_large",
+    "count": 1
+  }
+}

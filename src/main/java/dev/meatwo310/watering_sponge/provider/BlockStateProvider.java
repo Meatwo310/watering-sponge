@@ -14,5 +14,6 @@ public class BlockStateProvider extends net.minecraftforge.client.model.generato
     @Override
     protected void registerStatesAndModels() {
         this.simpleBlockItem(BlockRegister.WATERING_SPONGE_MEDIUM.get(), this.cubeAll(BlockRegister.WATERING_SPONGE_MEDIUM.get()));
+        this.simpleBlockItem(BlockRegister.WATERING_SPONGE_LARGE.get(), this.cubeAll(BlockRegister.WATERING_SPONGE_LARGE.get()));
     }
 }

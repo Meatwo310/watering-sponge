@@ -11,6 +11,7 @@ import net.minecraftforge.registries.RegistryObject;
 public class BlockRegister {
     protected static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, WateringSponge.MODID);
     public static final RegistryObject<Block> WATERING_SPONGE_MEDIUM = BLOCKS.register("watering_sponge_medium", WateringSpongeBlock::new);
+    public static final RegistryObject<Block> WATERING_SPONGE_LARGE = BLOCKS.register("watering_sponge_large", WateringSpongeBlock::new);
 
     public static void register(IEventBus modEventBus) {
         BLOCKS.register(modEventBus);
