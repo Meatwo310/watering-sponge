@@ -23,12 +23,6 @@ public abstract class LangProvider extends LanguageProvider {
             add(WateringSpongeItemGroup.TOOLTIP_KEY, "Watering Sponge");
             add(ItemRegister.TEST_ITEM.get(), "Test Item");
 
-            /*
-            Watering Sponge
-            This is a DANGEROUS block that will flood the surrounding area!
-            This replaces the surrounding air and replaceable blocks with water, with the placed location as the upper limit of height.
-            To cancel this, destroy the block that was placed first.
-             */
             add(ItemRegister.WATERING_SPONGE_MEDIUM.get(), "Watering Sponge");
             add(((WateringSpongeBlockItem)ItemRegister.WATERING_SPONGE_MEDIUM.get()).TOOLTIP_KEY_1,
                     "§4This is a §cDANGEROUS§r §4block that will flood the surrounding area!§r");
@@ -55,12 +49,6 @@ public abstract class LangProvider extends LanguageProvider {
         protected void addTranslations() {
             add(ItemRegister.TEST_ITEM.get(), "テストアイテム");
 
-            /*
-            逆スポンジ
-            これは周囲を水浸しにする危険なブロックです！
-            設置された場所を高さの上限として、 周囲の空気や置き換え可能なブロックを水に置換します。
-            これをキャンセルするには、 はじめに設置したブロックを壊してください。
-             */
             add(ItemRegister.WATERING_SPONGE_MEDIUM.get(), "逆スポンジ");
             add(((WateringSpongeBlockItem)ItemRegister.WATERING_SPONGE_MEDIUM.get()).TOOLTIP_KEY_1,
                     "§4これは周囲を水浸しにする§c危険な§r§4ブロックです！§r");
