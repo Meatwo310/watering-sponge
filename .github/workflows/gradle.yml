@@ -10,11 +10,7 @@ name: Build MOD Jar
 on:
   workflow_dispatch:
   push:
-    branches:
-      - '1.19.2'
   pull_request:
-    branches:
-      - '1.19.2'
 
 jobs:
   build:
