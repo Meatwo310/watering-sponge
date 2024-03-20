@@ -36,5 +36,4 @@ jobs:
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v4
       with:
-        path: build/libs/*
-        compression-level: 0
+        path: build/libs/
