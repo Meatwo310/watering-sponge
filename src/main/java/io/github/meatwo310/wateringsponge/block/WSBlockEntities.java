@@ -14,8 +14,11 @@ public class WSBlockEntities {
     public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITIES =
             DeferredRegister.create(ForgeRegistries.BLOCK_ENTITY_TYPES, WateringSponge.MODID);
 
-    public static final RegistryObject<BlockEntityType<WateringSpongeCoreBE>> WATERING_SPONGE_BE =
+    public static final RegistryObject<BlockEntityType<WateringSpongeCoreBE>> WATERING_SPONGE_CORE_BE =
             registerBE(WSBlocks.WATERING_SPONGE_CORE, WateringSpongeCoreBE::new);
+
+    public static final RegistryObject<BlockEntityType<WateringSpongeFillerBE>> WATERING_SPONGE_FILLER_BE =
+            registerBE(WSBlocks.WATERING_SPONGE_FILLER, WateringSpongeFillerBE::new);
 
     private static <T extends BlockEntity> RegistryObject<BlockEntityType<T>> registerBE(
             RegistryObject<Block> blockRegistry,

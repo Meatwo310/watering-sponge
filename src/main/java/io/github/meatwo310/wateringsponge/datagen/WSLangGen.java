@@ -18,6 +18,7 @@ public class WSLangGen {
             add("itemGroup.%s.main".formatted(WateringSponge.MODID), "Watering Sponge");
 
             add(WSBlocks.WATERING_SPONGE_CORE.get(), "Watering Sponge Core");
+            add(WSBlocks.WATERING_SPONGE_FILLER.get(), "Watering Sponge Filler");
         }
     }
 
@@ -29,6 +30,7 @@ public class WSLangGen {
         @Override
         protected void addTranslations() {
             add(WSBlocks.WATERING_SPONGE_CORE.get(), "逆スポンジコア");
+            add(WSBlocks.WATERING_SPONGE_FILLER.get(), "逆スポンジ");
         }
     }
 }

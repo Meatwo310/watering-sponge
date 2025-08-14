@@ -13,11 +13,8 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.Nullable;
 
-import javax.annotation.ParametersAreNonnullByDefault;
-
-@ParametersAreNonnullByDefault
-public class WateringSpongeCoreBlock extends Block implements EntityBlock {
-    public WateringSpongeCoreBlock() {
+public class WateringSpongeFillerBlock extends Block implements EntityBlock {
+    public WateringSpongeFillerBlock() {
         super(BlockBehaviour.Properties.copy(Blocks.SPONGE)
                 .noOcclusion()
                 .instabreak()
@@ -28,12 +25,12 @@ public class WateringSpongeCoreBlock extends Block implements EntityBlock {
 
     @Override
     public @Nullable BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
-        return new WateringSpongeCoreBE(pos, state);
+        return new WateringSpongeFillerBE(pos, state);
     }
 
     @Override
     public <T extends BlockEntity> @Nullable BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> type) {
-        if (type != WSBlockEntities.WATERING_SPONGE_CORE_BE.get()) return null;
-        return WateringSpongeCoreBE::tick;
+        if (type != WSBlockEntities.WATERING_SPONGE_FILLER_BE.get()) return null;
+        return WateringSpongeFillerBE::tick;
     }
 }

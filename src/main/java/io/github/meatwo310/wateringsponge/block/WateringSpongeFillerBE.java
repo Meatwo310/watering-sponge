@@ -6,14 +6,14 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 
-public class WateringSpongeCoreBE extends BlockEntity {
-    public WateringSpongeCoreBE(BlockPos pos, BlockState state) {
-        super(WSBlockEntities.WATERING_SPONGE_CORE_BE.get(), pos, state);
+public class WateringSpongeFillerBE extends BlockEntity {
+    public WateringSpongeFillerBE(BlockPos pos, BlockState state) {
+        super(WSBlockEntities.WATERING_SPONGE_FILLER_BE.get(), pos, state);
     }
 
     public static <T extends BlockEntity> void tick(Level level, BlockPos pos, BlockState state, T unknownBE) {
         if (level.isClientSide) return;
-        if (!(unknownBE instanceof WateringSpongeCoreBE be)) return;
-        LogUtils.getLogger().info("Core");
+        if (!(unknownBE instanceof WateringSpongeFillerBE be)) return;
+        LogUtils.getLogger().info("Filler");
     }
 }

@@ -22,6 +22,11 @@ public class WSBlocks {
             WateringSpongeCoreBlock::new
     );
 
+    public static final RegistryObject<Block> WATERING_SPONGE_FILLER = registerBlock(
+            "watering_sponge_filler",
+            WateringSpongeFillerBlock::new
+    );
+
     private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> blockSupplier) {
         return registerBlock(name, blockSupplier, item ->
                 new BlockItem(item.get(), new Item.Properties())
