@@ -1,5 +1,6 @@
 package io.github.meatwo310.wateringsponge;
 
+import io.github.meatwo310.wateringsponge.block.WSBlockEntities;
 import io.github.meatwo310.wateringsponge.block.WSBlocks;
 import io.github.meatwo310.wateringsponge.item.WSCreativeModeTabs;
 import io.github.meatwo310.wateringsponge.item.WSItems;
@@ -17,5 +18,6 @@ public class WateringSponge {
         WSCreativeModeTabs.register(bus);
         WSItems.register(bus);
         WSBlocks.register(bus);
+        WSBlockEntities.register(bus);
     }
 }
