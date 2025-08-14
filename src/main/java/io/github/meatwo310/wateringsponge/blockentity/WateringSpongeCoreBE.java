@@ -19,19 +19,20 @@ import javax.annotation.ParametersAreNonnullByDefault;
 @FieldsAreNonnullByDefault
 @MethodsReturnNonnullByDefault
 public class WateringSpongeCoreBE extends BlockEntity {
-    public static final Block REPLACE_WITH = Blocks.WATER;
+    public static final Block FINAL_BLOCK = Blocks.WATER;
 
     private int tickCounter = 0;
     private BlockPos corePos = BlockPos.ZERO;
-    private boolean fillMore = true;
+    private boolean continueChaining = true;
+    private boolean replacedWithFinalBlock = false;
 
     public WateringSpongeCoreBE(BlockPos pos, BlockState state) {
         super(WSBlockEntities.WATERING_SPONGE_CORE_BE.get(), pos, state);
     }
 
-    public static <T extends BlockEntity> void tick(Level level, BlockPos pos, BlockState state, T unknownBE) {
+    public static <T extends BlockEntity> void tick(Level level, BlockPos pos, BlockState state, T blockEntity) {
         if (level.isClientSide) return;
-        if (!(unknownBE instanceof WateringSpongeCoreBE be)) return;
+        if (!(blockEntity instanceof WateringSpongeCoreBE be)) return;
         be.tick(level, pos, state);
     }
 
@@ -41,24 +42,29 @@ public class WateringSpongeCoreBE extends BlockEntity {
             this.initializeCore(pos);
         }
 
-        // TODO: キャンセル処理を実装
-
         if (this.tickCounter > ServerConfig.WATERING_SPONGE_MAX_TICKS.get()) {
             this.breakSelf(level, pos);
             return;
         }
 
-        // コアが自然消滅したためチェーン停止
-        if (!level.getBlockState(corePos).is(this.getBlockState().getBlock())) {
-            this.fillMore = false;
+        // コアが人為的に破壊されたらすべての処理をキャンセル
+        if (level.getBlockState(this.corePos).isAir()) {
+            var replaceTo = this.replacedWithFinalBlock ? FINAL_BLOCK : Blocks.AIR;
+            level.setBlockAndUpdate(pos, replaceTo.defaultBlockState());
+            return;
         }
 
-        if (this.fillMore && this.tickCounter % ServerConfig.WATERING_SPONGE_TICKS_PER_BLOCK.get() == 0) {
+        // コアが自然消滅したらチェーン停止
+        if (!level.getBlockState(this.corePos).is(state.getBlock())) {
+            this.continueChaining = false;
+        }
+
+        if (this.continueChaining && this.tickCounter % ServerConfig.WATERING_SPONGE_TICKS_PER_BLOCK.get() == 0) {
             for (Direction dir : Direction.values()) {
                 if (dir == Direction.UP) continue;
                 this.chain(level, pos.relative(dir), state);
             }
-            this.fillMore = false;
+            this.continueChaining = false;
         }
     }
 
@@ -69,15 +75,15 @@ public class WateringSpongeCoreBE extends BlockEntity {
     }
 
     private void breakSelf(Level level, BlockPos pos) {
-        level.destroyBlock(this.getBlockPos(), false);
-        level.setBlockAndUpdate(pos, REPLACE_WITH.defaultBlockState());
+        level.destroyBlock(pos, false); // アイテムドロップ: false
+        level.setBlockAndUpdate(pos, FINAL_BLOCK.defaultBlockState());
     }
 
     private void chain(Level level, BlockPos chainedPos, BlockState selfState) {
         var chainedState = level.getBlockState(chainedPos);
 
         // チェーン先が空気でも置換先ブロックでもないならチェック
-        if (!chainedState.isAir() && !chainedState.is(REPLACE_WITH)) {
+        if (!chainedState.isAir() && !chainedState.is(FINAL_BLOCK)) {
             if (!ServerConfig.WATERING_SPONGE_FILL_BREAKABLE.get()) return;
             if (chainedState.getPistonPushReaction() != PushReaction.DESTROY) return;
             // ピストンで破壊可能なブロックなので続行
@@ -93,8 +99,8 @@ public class WateringSpongeCoreBE extends BlockEntity {
         }
 
         // チェーン先が置き換えブロックでないなら破壊
-        if (!chainedState.is(REPLACE_WITH)) {
-            level.destroyBlock(chainedPos, true);
+        if (!chainedState.is(FINAL_BLOCK)) {
+            level.destroyBlock(chainedPos, true); // アイテムドロップ: true
             // チェーン先のエンティティをコアの位置にテレポート
             level.getEntities(null, new AABB(chainedPos))
                     .forEach(entity -> entity.teleportTo(
@@ -102,6 +108,8 @@ public class WateringSpongeCoreBE extends BlockEntity {
                             this.corePos.getY() + 0.5,
                             this.corePos.getZ() + 0.5
                     ));
+        } else {
+            this.replacedWithFinalBlock = true;
         }
 
         level.setBlockAndUpdate(chainedPos, selfState.getBlock().defaultBlockState());
