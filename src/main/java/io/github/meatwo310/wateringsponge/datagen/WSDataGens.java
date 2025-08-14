@@ -14,11 +14,23 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
 public class WSDataGens {
     @SubscribeEvent
     public static void gatherData(GatherDataEvent event) {
-        DataGenerator gen = event.getGenerator();
-        PackOutput output = gen.getPackOutput();
+        DataGenerator generator = event.getGenerator();
+        PackOutput output = generator.getPackOutput();
         ExistingFileHelper efh = event.getExistingFileHelper();
 
-        gen.addProvider(event.includeClient(), new WSLangGen.EnUs(output));
-        gen.addProvider(event.includeClient(), new WSLangGen.JaJp(output));
+        DataGeneratorHelper gen = new DataGeneratorHelper(generator);
+
+        if (event.includeClient()) {
+            gen.addProvider(new WSLangGen.EnUs(output));
+            gen.addProvider(new WSLangGen.JaJp(output));
+            gen.addProvider(new WSBlockStateGen(output, efh));
+        }
+    }
+
+    private record DataGeneratorHelper(DataGenerator gen) {
+        public <T extends net.minecraft.data.DataProvider> T addProvider(T provider) {
+            gen.addProvider(true, provider);
+            return provider;
+        }
     }
 }
