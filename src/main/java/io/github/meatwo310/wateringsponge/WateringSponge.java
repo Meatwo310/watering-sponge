@@ -1,6 +1,6 @@
 package io.github.meatwo310.wateringsponge;
 
-import io.github.meatwo310.wateringsponge.block.WSBlockEntities;
+import io.github.meatwo310.wateringsponge.blockentity.WSBlockEntities;
 import io.github.meatwo310.wateringsponge.block.WSBlocks;
 import io.github.meatwo310.wateringsponge.item.WSCreativeModeTabs;
 import io.github.meatwo310.wateringsponge.item.WSItems;

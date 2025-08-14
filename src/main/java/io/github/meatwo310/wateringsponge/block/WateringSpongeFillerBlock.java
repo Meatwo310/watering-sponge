@@ -1,5 +1,7 @@
 package io.github.meatwo310.wateringsponge.block;
 
+import io.github.meatwo310.wateringsponge.blockentity.WSBlockEntities;
+import io.github.meatwo310.wateringsponge.blockentity.WateringSpongeFillerBE;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
