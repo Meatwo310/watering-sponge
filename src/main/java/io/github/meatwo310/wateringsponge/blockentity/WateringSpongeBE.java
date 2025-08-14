@@ -18,7 +18,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
 @ParametersAreNonnullByDefault
 @FieldsAreNonnullByDefault
 @MethodsReturnNonnullByDefault
-public class WateringSpongeCoreBE extends BlockEntity {
+public class WateringSpongeBE extends BlockEntity {
     public static final Block FINAL_BLOCK = Blocks.WATER;
 
     private int tickCounter = 0;
@@ -26,13 +26,13 @@ public class WateringSpongeCoreBE extends BlockEntity {
     private boolean continueChaining = true;
     private boolean replacedWithFinalBlock = false;
 
-    public WateringSpongeCoreBE(BlockPos pos, BlockState state) {
-        super(WSBlockEntities.WATERING_SPONGE_CORE_BE.get(), pos, state);
+    public WateringSpongeBE(BlockPos pos, BlockState state) {
+        super(WSBlockEntities.WATERING_SPONGE_BE.get(), pos, state);
     }
 
     public static <T extends BlockEntity> void tick(Level level, BlockPos pos, BlockState state, T blockEntity) {
         if (level.isClientSide) return;
-        if (!(blockEntity instanceof WateringSpongeCoreBE be)) return;
+        if (!(blockEntity instanceof WateringSpongeBE be)) return;
         be.tick(level, pos, state);
     }
 
@@ -112,7 +112,7 @@ public class WateringSpongeCoreBE extends BlockEntity {
         }
 
         level.setBlockAndUpdate(chainedPos, selfState.getBlock().defaultBlockState());
-        if (!(level.getBlockEntity(chainedPos) instanceof WateringSpongeCoreBE chainedBE)) return;
+        if (!(level.getBlockEntity(chainedPos) instanceof WateringSpongeBE chainedBE)) return;
         chainedBE.tickCounter = 1;
         chainedBE.corePos = this.corePos;
         chainedBE.replacedWithFinalBlock = replaceWithFinalBlock;

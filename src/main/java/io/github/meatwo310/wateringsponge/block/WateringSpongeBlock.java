@@ -1,7 +1,7 @@
 package io.github.meatwo310.wateringsponge.block;
 
 import io.github.meatwo310.wateringsponge.blockentity.WSBlockEntities;
-import io.github.meatwo310.wateringsponge.blockentity.WateringSpongeCoreBE;
+import io.github.meatwo310.wateringsponge.blockentity.WateringSpongeBE;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -18,8 +18,8 @@ import org.jetbrains.annotations.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 
 @ParametersAreNonnullByDefault
-public class WateringSpongeCoreBlock extends Block implements EntityBlock {
-    public WateringSpongeCoreBlock() {
+public class WateringSpongeBlock extends Block implements EntityBlock {
+    public WateringSpongeBlock() {
         super(BlockBehaviour.Properties.copy(Blocks.SPONGE)
                 .noOcclusion()
                 .instabreak()
@@ -30,12 +30,12 @@ public class WateringSpongeCoreBlock extends Block implements EntityBlock {
 
     @Override
     public @Nullable BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
-        return new WateringSpongeCoreBE(pos, state);
+        return new WateringSpongeBE(pos, state);
     }
 
     @Override
     public <T extends BlockEntity> @Nullable BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> type) {
-        if (type != WSBlockEntities.WATERING_SPONGE_CORE_BE.get()) return null;
-        return WateringSpongeCoreBE::tick;
+        if (type != WSBlockEntities.WATERING_SPONGE_BE.get()) return null;
+        return WateringSpongeBE::tick;
     }
 }
