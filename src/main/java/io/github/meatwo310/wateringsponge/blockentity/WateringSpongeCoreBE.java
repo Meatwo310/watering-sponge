@@ -48,6 +48,11 @@ public class WateringSpongeCoreBE extends BlockEntity {
             return;
         }
 
+        // コアが自然消滅したためチェーン停止
+        if (!level.getBlockState(corePos).is(this.getBlockState().getBlock())) {
+            this.fillMore = false;
+        }
+
         if (this.fillMore && this.tickCounter % ServerConfig.WATERING_SPONGE_TICKS_PER_BLOCK.get() == 0) {
             for (Direction dir : Direction.values()) {
                 if (dir == Direction.UP) continue;
