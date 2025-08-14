@@ -1,11 +1,30 @@
 package io.github.meatwo310.wateringsponge.blockentity;
 
+import io.github.meatwo310.wateringsponge.config.ServerConfig;
+import net.minecraft.FieldsAreNonnullByDefault;
+import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.material.PushReaction;
+import net.minecraft.world.phys.AABB;
 
+import javax.annotation.ParametersAreNonnullByDefault;
+
+@ParametersAreNonnullByDefault
+@FieldsAreNonnullByDefault
+@MethodsReturnNonnullByDefault
 public class WateringSpongeCoreBE extends BlockEntity {
+    public static final Block REPLACE_WITH = Blocks.WATER;
+
+    private int tickCounter = 0;
+    private BlockPos corePos = BlockPos.ZERO;
+    private boolean fillMore = true;
+
     public WateringSpongeCoreBE(BlockPos pos, BlockState state) {
         super(WSBlockEntities.WATERING_SPONGE_CORE_BE.get(), pos, state);
     }
@@ -13,5 +32,76 @@ public class WateringSpongeCoreBE extends BlockEntity {
     public static <T extends BlockEntity> void tick(Level level, BlockPos pos, BlockState state, T unknownBE) {
         if (level.isClientSide) return;
         if (!(unknownBE instanceof WateringSpongeCoreBE be)) return;
+        be.tick(level, pos, state);
+    }
+
+    private void tick(Level level, BlockPos pos, BlockState state) {
+        this.tickCounter++;
+        if (this.tickCounter == 1) {
+            this.initializeCore(pos);
+        }
+
+        // TODO: キャンセル処理を実装
+
+        if (this.tickCounter > ServerConfig.WATERING_SPONGE_MAX_TICKS.get()) {
+            this.breakSelf(level, pos);
+            return;
+        }
+
+        if (this.fillMore && this.tickCounter % ServerConfig.WATERING_SPONGE_TICKS_PER_BLOCK.get() == 0) {
+            for (Direction dir : Direction.values()) {
+                if (dir == Direction.UP) continue;
+                this.chain(level, pos.relative(dir), state);
+            }
+            this.fillMore = false;
+        }
+    }
+
+    private void initializeCore(BlockPos pos) {
+        if (this.corePos.equals(BlockPos.ZERO)) {
+            this.corePos = pos;
+        }
+    }
+
+    private void breakSelf(Level level, BlockPos pos) {
+        level.destroyBlock(this.getBlockPos(), false);
+        level.setBlockAndUpdate(pos, REPLACE_WITH.defaultBlockState());
+    }
+
+    private void chain(Level level, BlockPos chainedPos, BlockState selfState) {
+        var chainedState = level.getBlockState(chainedPos);
+
+        // チェーン先が空気でも置換先ブロックでもないならチェック
+        if (!chainedState.isAir() && !chainedState.is(REPLACE_WITH)) {
+            if (!ServerConfig.WATERING_SPONGE_FILL_BREAKABLE.get()) return;
+            if (chainedState.getPistonPushReaction() != PushReaction.DESTROY) return;
+            // ピストンで破壊可能なブロックなので続行
+        }
+
+        // チェーン先が範囲外なら中止
+        if (
+                Math.abs(this.corePos.getX() - chainedPos.getX()) > ServerConfig.WATERING_SPONGE_RADIUS.get() ||
+                Math.abs(this.corePos.getZ() - chainedPos.getZ()) > ServerConfig.WATERING_SPONGE_RADIUS.get() ||
+                Math.abs(this.corePos.getY() - chainedPos.getY()) > ServerConfig.WATERING_SPONGE_HEIGHT.get()
+        ) {
+            return;
+        }
+
+        // チェーン先が置き換えブロックでないなら破壊
+        if (!chainedState.is(REPLACE_WITH)) {
+            level.destroyBlock(chainedPos, true);
+            // チェーン先のエンティティをコアの位置にテレポート
+            level.getEntities(null, new AABB(chainedPos))
+                    .forEach(entity -> entity.teleportTo(
+                            this.corePos.getX() + 0.5,
+                            this.corePos.getY() + 0.5,
+                            this.corePos.getZ() + 0.5
+                    ));
+        }
+
+        level.setBlockAndUpdate(chainedPos, selfState.getBlock().defaultBlockState());
+        if (!(level.getBlockEntity(chainedPos) instanceof WateringSpongeCoreBE chainedBE)) return;
+        chainedBE.tickCounter = 1;
+        chainedBE.corePos = this.corePos;
     }
 }

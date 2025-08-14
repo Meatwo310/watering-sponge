@@ -2,10 +2,12 @@ package io.github.meatwo310.wateringsponge;
 
 import io.github.meatwo310.wateringsponge.blockentity.WSBlockEntities;
 import io.github.meatwo310.wateringsponge.block.WSBlocks;
+import io.github.meatwo310.wateringsponge.config.ServerConfig;
 import io.github.meatwo310.wateringsponge.item.WSCreativeModeTabs;
 import io.github.meatwo310.wateringsponge.item.WSItems;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 @Mod(WateringSponge.MODID)
@@ -19,5 +21,7 @@ public class WateringSponge {
         WSItems.register(bus);
         WSBlocks.register(bus);
         WSBlockEntities.register(bus);
+
+        context.registerConfig(ModConfig.Type.SERVER, ServerConfig.SPEC);
     }
 }
