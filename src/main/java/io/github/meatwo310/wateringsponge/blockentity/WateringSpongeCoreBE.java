@@ -99,7 +99,8 @@ public class WateringSpongeCoreBE extends BlockEntity {
         }
 
         // チェーン先が置き換えブロックでないなら破壊
-        if (!chainedState.is(FINAL_BLOCK)) {
+        boolean replaceWithFinalBlock = chainedState.is(FINAL_BLOCK);
+        if (!replaceWithFinalBlock) {
             level.destroyBlock(chainedPos, true); // アイテムドロップ: true
             // チェーン先のエンティティをコアの位置にテレポート
             level.getEntities(null, new AABB(chainedPos))
@@ -108,13 +109,12 @@ public class WateringSpongeCoreBE extends BlockEntity {
                             this.corePos.getY() + 0.5,
                             this.corePos.getZ() + 0.5
                     ));
-        } else {
-            this.replacedWithFinalBlock = true;
         }
 
         level.setBlockAndUpdate(chainedPos, selfState.getBlock().defaultBlockState());
         if (!(level.getBlockEntity(chainedPos) instanceof WateringSpongeCoreBE chainedBE)) return;
         chainedBE.tickCounter = 1;
         chainedBE.corePos = this.corePos;
+        chainedBE.replacedWithFinalBlock = replaceWithFinalBlock;
     }
 }
