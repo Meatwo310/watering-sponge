@@ -1,4 +1,4 @@
 {
-  "block.wateringsponge.watering_sponge": "Watering Sponge",
-  "itemGroup.wateringsponge.main": "Watering Sponge"
+  "block.wateringsponge.watering_sponge_core": "Watering Sponge",
+  "itemGroup.wateringsponge.main": "Watering Sponge Core"
 }

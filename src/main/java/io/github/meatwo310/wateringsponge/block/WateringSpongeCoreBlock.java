@@ -16,8 +16,8 @@ import org.jetbrains.annotations.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 
 @ParametersAreNonnullByDefault
-public class WateringSpongeBlock extends Block implements EntityBlock {
-    public WateringSpongeBlock() {
+public class WateringSpongeCoreBlock extends Block implements EntityBlock {
+    public WateringSpongeCoreBlock() {
         super(BlockBehaviour.Properties.copy(Blocks.SPONGE)
                 .noOcclusion()
                 .instabreak()
@@ -28,12 +28,12 @@ public class WateringSpongeBlock extends Block implements EntityBlock {
 
     @Override
     public @Nullable BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
-        return new WateringSpongeBE(pos, state);
+        return new WateringSpongeCoreBE(pos, state);
     }
 
     @Override
     public <T extends BlockEntity> @Nullable BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> type) {
         if (type != WSBlockEntities.WATERING_SPONGE_BE.get()) return null;
-        return WateringSpongeBE::tick;
+        return WateringSpongeCoreBE::tick;
     }
 }

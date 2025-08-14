@@ -17,9 +17,9 @@ public class WSBlocks {
     public static final DeferredRegister<Block> BLOCKS =
             DeferredRegister.create(ForgeRegistries.BLOCKS, WateringSponge.MODID);
 
-    public static final RegistryObject<Block> WATERING_SPONGE = registerBlock(
-            "watering_sponge",
-            WateringSpongeBlock::new
+    public static final RegistryObject<Block> WATERING_SPONGE_CORE = registerBlock(
+            "watering_sponge_core",
+            WateringSpongeCoreBlock::new
     );
 
     private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> blockSupplier) {

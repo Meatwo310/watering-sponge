@@ -21,7 +21,7 @@ public class WSCreativeModeTabs {
     public static final RegistryObject<CreativeModeTab> WATERING_SPONGE_TAB = TABS
             .register(WateringSponge.MODID, () -> CreativeModeTab.builder()
                     .title(Component.translatable("itemGroup.%s.main".formatted(WateringSponge.MODID)))
-                    .icon(() -> new ItemStack(WSBlocks.WATERING_SPONGE.get()))
+                    .icon(() -> new ItemStack(WSBlocks.WATERING_SPONGE_CORE.get()))
                     .displayItems(WSCreativeModeTabs::getDisplayItems)
                     .build()
             );

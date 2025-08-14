@@ -15,7 +15,7 @@ public class WSBlockStateGen extends BlockStateProvider {
 
     @Override
     protected void registerStatesAndModels() {
-        cubeAllBlockWithItem(WSBlocks.WATERING_SPONGE);
+        cubeAllBlockWithItem(WSBlocks.WATERING_SPONGE_CORE);
     }
 
     private void cubeAllBlockWithItem(RegistryObject<Block> registryObject) {
