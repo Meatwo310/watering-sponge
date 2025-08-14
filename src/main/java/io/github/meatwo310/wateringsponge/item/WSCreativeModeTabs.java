@@ -3,6 +3,7 @@ package io.github.meatwo310.wateringsponge.item;
 import io.github.meatwo310.wateringsponge.WateringSponge;
 import io.github.meatwo310.wateringsponge.block.WSBlocks;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTab.ItemDisplayParameters;
 import net.minecraft.world.item.CreativeModeTab.Output;
@@ -19,6 +20,7 @@ public class WSCreativeModeTabs {
 
     public static final RegistryObject<CreativeModeTab> WATERING_SPONGE_TAB = TABS
             .register(WateringSponge.MODID, () -> CreativeModeTab.builder()
+                    .title(Component.translatable("itemGroup.%s.main".formatted(WateringSponge.MODID)))
                     .icon(() -> new ItemStack(WSBlocks.WATERING_SPONGE.get()))
                     .displayItems(WSCreativeModeTabs::getDisplayItems)
                     .build()
