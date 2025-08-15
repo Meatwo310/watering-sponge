@@ -48,15 +48,17 @@ public class WateringSpongeBE extends BlockEntity {
             return;
         }
 
+        BlockState coreState = level.getBlockState(this.corePos);
+
         // コアが人為的に破壊されたらすべての処理をキャンセル
-        if (level.getBlockState(this.corePos).isAir()) {
+        if (coreState.isAir()) {
             var replaceTo = this.replacedWithFinalBlock ? FINAL_BLOCK : Blocks.AIR;
             level.setBlockAndUpdate(pos, replaceTo.defaultBlockState());
             return;
         }
 
         // コアが自然消滅したらチェーン停止
-        if (!level.getBlockState(this.corePos).is(state.getBlock())) {
+        if (!coreState.is(state.getBlock()) || !coreState.getValue(WateringSpongeBlock.CORE)) {
             this.continueChaining = false;
         }
 
