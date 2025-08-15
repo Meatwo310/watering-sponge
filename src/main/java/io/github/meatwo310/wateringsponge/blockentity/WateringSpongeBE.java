@@ -1,5 +1,6 @@
 package io.github.meatwo310.wateringsponge.blockentity;
 
+import io.github.meatwo310.wateringsponge.block.WateringSpongeBlock;
 import io.github.meatwo310.wateringsponge.config.ServerConfig;
 import net.minecraft.FieldsAreNonnullByDefault;
 import net.minecraft.MethodsReturnNonnullByDefault;
@@ -111,7 +112,11 @@ public class WateringSpongeBE extends BlockEntity {
                     ));
         }
 
-        level.setBlockAndUpdate(chainedPos, selfState.getBlock().defaultBlockState());
+        level.setBlockAndUpdate(chainedPos, selfState
+                .getBlock()
+                .defaultBlockState()
+                .setValue(WateringSpongeBlock.CORE, false)
+        );
         if (!(level.getBlockEntity(chainedPos) instanceof WateringSpongeBE chainedBE)) return;
         chainedBE.tickCounter = 1;
         chainedBE.corePos = this.corePos;

@@ -17,7 +17,7 @@ public class WSLangGen {
         protected void addTranslations() {
             add("itemGroup.%s.main".formatted(WateringSponge.MODID), "Watering Sponge");
 
-            add(WSBlocks.WATERING_SPONGE_CORE.get(), "Watering Sponge");
+            add(WSBlocks.WATERING_SPONGE.get(), "Watering Sponge");
         }
     }
 
@@ -28,7 +28,7 @@ public class WSLangGen {
 
         @Override
         protected void addTranslations() {
-            add(WSBlocks.WATERING_SPONGE_CORE.get(), "逆スポンジ");
+            add(WSBlocks.WATERING_SPONGE.get(), "逆スポンジ");
         }
     }
 }

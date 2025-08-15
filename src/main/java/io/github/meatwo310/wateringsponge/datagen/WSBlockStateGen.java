@@ -2,9 +2,11 @@ package io.github.meatwo310.wateringsponge.datagen;
 
 import io.github.meatwo310.wateringsponge.WateringSponge;
 import io.github.meatwo310.wateringsponge.block.WSBlocks;
+import io.github.meatwo310.wateringsponge.block.WateringSpongeBlock;
 import net.minecraft.data.PackOutput;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
+import net.minecraftforge.client.model.generators.ConfiguredModel;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.RegistryObject;
 
@@ -15,7 +17,22 @@ public class WSBlockStateGen extends BlockStateProvider {
 
     @Override
     protected void registerStatesAndModels() {
-        cubeAllBlockWithItem(WSBlocks.WATERING_SPONGE_CORE);
+//        cubeAllBlockWithItem(WSBlocks.WATERING_SPONGE_CORE);
+        var wateringSpongeBlock = WSBlocks.WATERING_SPONGE.get();
+        var variantBuilder = getVariantBuilder(wateringSpongeBlock);
+        String id = WSBlocks.WATERING_SPONGE.getId().getPath();
+
+        variantBuilder.forAllStates(state -> {
+            var name = "%s%s".formatted(
+                    id,
+                    state.getValue(WateringSpongeBlock.CORE) ? "_core" : ""
+            );
+
+            return ConfiguredModel.builder()
+                    .modelFile(models().cubeAll(name, modLoc("block/" + name)))
+                    .build();
+        });
+        simpleBlockItem(wateringSpongeBlock, models().cubeAll(id, modLoc("block/" + id)));
     }
 
     private void cubeAllBlockWithItem(RegistryObject<Block> registryObject) {
