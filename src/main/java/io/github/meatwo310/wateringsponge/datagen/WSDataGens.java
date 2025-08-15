@@ -25,6 +25,9 @@ public class WSDataGens {
             gen.addProvider(new WSLangGen.JaJp(output));
             gen.addProvider(new WSBlockStateGen(output, efh));
         }
+        if (event.includeServer()) {
+            gen.addProvider(new WSRecipeGen(output));
+        }
     }
 
     private record DataGeneratorHelper(DataGenerator gen) {
