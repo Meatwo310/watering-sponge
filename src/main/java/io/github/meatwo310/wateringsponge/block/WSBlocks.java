@@ -25,6 +25,10 @@ public class WSBlocks {
             "large_watering_sponge",
             LargeWateringSpongeBlock::new
     );
+    public static final RegistryObject<Block> LAVA_SPONGE = registerBlock(
+            "lava_sponge",
+            LavaSpongeBlock::new
+    );
 
     private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> blockSupplier) {
         return registerBlock(name, blockSupplier, item ->

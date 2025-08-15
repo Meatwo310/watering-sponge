@@ -36,6 +36,7 @@ public abstract class AbstractWateringSpongeBE extends BlockEntity {
     protected abstract int getMaxTicks();
     protected abstract int getTicksPerBlock();
     protected abstract boolean isFillBreakable();
+    protected abstract Block getFinalBlock();
 
     public static <T extends BlockEntity> void tick(Level level, BlockPos pos, BlockState state, T blockEntity) {
         if (level.isClientSide) return;
@@ -58,7 +59,7 @@ public abstract class AbstractWateringSpongeBE extends BlockEntity {
 
         // コアが人為的に破壊されたらすべての処理をキャンセル
         if (coreState.isAir()) {
-            var replaceTo = this.replacedWithFinalBlock ? FINAL_BLOCK : Blocks.AIR;
+            var replaceTo = this.replacedWithFinalBlock ? getFinalBlock() : Blocks.AIR;
             level.setBlockAndUpdate(pos, replaceTo.defaultBlockState());
             return;
         }
@@ -85,14 +86,14 @@ public abstract class AbstractWateringSpongeBE extends BlockEntity {
 
     private void breakSelf(Level level, BlockPos pos) {
         level.destroyBlock(pos, false); // アイテムドロップ: false
-        level.setBlockAndUpdate(pos, FINAL_BLOCK.defaultBlockState());
+        level.setBlockAndUpdate(pos, getFinalBlock().defaultBlockState());
     }
 
     private void chain(Level level, BlockPos chainedPos, BlockState selfState) {
         var chainedState = level.getBlockState(chainedPos);
 
         // チェーン先が空気でも置換先ブロックでもないならチェック
-        if (!chainedState.isAir() && !chainedState.is(FINAL_BLOCK)) {
+        if (!chainedState.isAir() && !chainedState.is(getFinalBlock())) {
             if (!this.isFillBreakable()) return;
             if (chainedState.getPistonPushReaction() != PushReaction.DESTROY) return;
             // ピストンで破壊可能なブロックなので続行
@@ -108,7 +109,7 @@ public abstract class AbstractWateringSpongeBE extends BlockEntity {
         }
 
         // チェーン先が置き換えブロックでないなら破壊
-        boolean replaceWithFinalBlock = chainedState.is(FINAL_BLOCK);
+        boolean replaceWithFinalBlock = chainedState.is(getFinalBlock());
         if (!replaceWithFinalBlock) {
             level.destroyBlock(chainedPos, true); // アイテムドロップ: true
             // チェーン先のエンティティをコアの位置にテレポート

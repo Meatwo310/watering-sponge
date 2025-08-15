@@ -4,6 +4,8 @@ import io.github.meatwo310.wateringsponge.config.ServerConfig;
 import net.minecraft.FieldsAreNonnullByDefault;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 
 import javax.annotation.ParametersAreNonnullByDefault;
@@ -39,5 +41,10 @@ public class LargeWateringSpongeBE extends AbstractWateringSpongeBE {
     @Override
     protected boolean isFillBreakable() {
         return ServerConfig.LARGE_WATERING_SPONGE.fillBreakable.get();
+    }
+
+    @Override
+    protected Block getFinalBlock() {
+        return Blocks.WATER;
     }
 }

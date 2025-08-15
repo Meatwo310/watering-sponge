@@ -13,38 +13,39 @@ import javax.annotation.ParametersAreNonnullByDefault;
 @ParametersAreNonnullByDefault
 @FieldsAreNonnullByDefault
 @MethodsReturnNonnullByDefault
-public class WateringSpongeBE extends AbstractWateringSpongeBE {
-    public WateringSpongeBE(BlockPos pos, BlockState state) {
-        super(WSBlockEntities.WATERING_SPONGE_BE.get(), pos, state);
+public class LavaSpongeBE extends AbstractWateringSpongeBE {
+    public LavaSpongeBE(BlockPos pos, BlockState state) {
+        super(WSBlockEntities.LAVA_SPONGE_BE.get(), pos, state);
     }
 
     @Override
     protected int getRadius() {
-        return ServerConfig.WATERING_SPONGE.xzRadius.get();
+        return ServerConfig.LAVA_SPONGE.xzRadius.get();
     }
 
     @Override
     protected int getHeight() {
-        return ServerConfig.WATERING_SPONGE.yHeight.get();
+        return ServerConfig.LAVA_SPONGE.yHeight.get();
     }
 
     @Override
     protected int getMaxTicks() {
-        return ServerConfig.WATERING_SPONGE.maxTicks.get();
+        return ServerConfig.LAVA_SPONGE.maxTicks.get();
     }
 
     @Override
     protected int getTicksPerBlock() {
-        return ServerConfig.WATERING_SPONGE.ticksPerBlock.get();
+        return ServerConfig.LAVA_SPONGE.ticksPerBlock.get();
     }
 
     @Override
     protected boolean isFillBreakable() {
-        return ServerConfig.WATERING_SPONGE.fillBreakable.get();
+        return ServerConfig.LAVA_SPONGE.fillBreakable.get();
     }
 
     @Override
     protected Block getFinalBlock() {
-        return Blocks.WATER;
+        return Blocks.LAVA;
     }
 }
+

@@ -23,6 +23,15 @@ public class ServerConfig {
             32,
             true
     );
+    public static final WSConfig LAVA_SPONGE = new WSConfig(
+            "lavaSponge",
+            "Lava Sponge",
+            480,
+            15,
+            8,
+            16,
+            true
+    );
 
     public static final ForgeConfigSpec SPEC = BUILDER.build();
 

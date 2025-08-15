@@ -19,6 +19,8 @@ public class WSBlockEntities {
             registerBE(WSBlocks.WATERING_SPONGE, WateringSpongeBE::new);
     public static final RegistryObject<BlockEntityType<LargeWateringSpongeBE>> LARGE_WATERING_SPONGE_BE =
             registerBE(WSBlocks.LARGE_WATERING_SPONGE, LargeWateringSpongeBE::new);
+    public static final RegistryObject<BlockEntityType<LavaSpongeBE>> LAVA_SPONGE_BE =
+            registerBE(WSBlocks.LAVA_SPONGE, LavaSpongeBE::new);
 
     private static <T extends BlockEntity> RegistryObject<BlockEntityType<T>> registerBE(
             RegistryObject<Block> blockRegistry,

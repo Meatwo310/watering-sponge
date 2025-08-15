@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "core=false": {
+      "model": "wateringsponge:block/lava_sponge"
+    },
+    "core=true": {
+      "model": "wateringsponge:block/lava_sponge_core"
+    }
+  }
+}

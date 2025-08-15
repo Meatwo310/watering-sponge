@@ -19,6 +19,7 @@ public class WSBlockStateGen extends BlockStateProvider {
     protected void registerStatesAndModels() {
         registerWateringSpongeBlock(WSBlocks.WATERING_SPONGE);
         registerWateringSpongeBlock(WSBlocks.LARGE_WATERING_SPONGE);
+        registerWateringSpongeBlock(WSBlocks.LAVA_SPONGE);
     }
 
     private void registerWateringSpongeBlock(RegistryObject<Block> blockRegistryObject) {

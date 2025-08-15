@@ -1,5 +1,6 @@
 {
   "block.wateringsponge.large_watering_sponge": "Large Water Sponge",
+  "block.wateringsponge.lava_sponge": "Lava Sponge",
   "block.wateringsponge.watering_sponge": "Watering Sponge",
   "itemGroup.wateringsponge.main": "Watering Sponge"
 }

@@ -19,6 +19,7 @@ public class WSLangGen {
 
             add(WSBlocks.WATERING_SPONGE.get(), "Watering Sponge");
             add(WSBlocks.LARGE_WATERING_SPONGE.get(), "Large Water Sponge");
+            add(WSBlocks.LAVA_SPONGE.get(), "Lava Sponge");
         }
     }
 
@@ -31,6 +32,7 @@ public class WSLangGen {
         protected void addTranslations() {
             add(WSBlocks.WATERING_SPONGE.get(), "逆スポンジ");
             add(WSBlocks.LARGE_WATERING_SPONGE.get(), "大きな逆スポンジ");
+            add(WSBlocks.LAVA_SPONGE.get(), "溶岩スポンジ");
         }
     }
 }
