@@ -18,26 +18,26 @@ public class WateringSpongeBE extends AbstractWateringSpongeBE {
 
     @Override
     protected int getRadius() {
-        return ServerConfig.WATERING_SPONGE_RADIUS.get();
+        return ServerConfig.WATERING_SPONGE.xzRadius.get();
     }
 
     @Override
     protected int getHeight() {
-        return ServerConfig.WATERING_SPONGE_HEIGHT.get();
+        return ServerConfig.WATERING_SPONGE.yHeight.get();
     }
 
     @Override
     protected int getMaxTicks() {
-        return ServerConfig.WATERING_SPONGE_MAX_TICKS.get();
+        return ServerConfig.WATERING_SPONGE.maxTicks.get();
     }
 
     @Override
     protected int getTicksPerBlock() {
-        return ServerConfig.WATERING_SPONGE_TICKS_PER_BLOCK.get();
+        return ServerConfig.WATERING_SPONGE.ticksPerBlock.get();
     }
 
     @Override
     protected boolean isFillBreakable() {
-        return ServerConfig.WATERING_SPONGE_FILL_BREAKABLE.get();
+        return ServerConfig.WATERING_SPONGE.fillBreakable.get();
     }
 }
