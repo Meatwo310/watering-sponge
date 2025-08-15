@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "D": {
+      "item": "minecraft:coarse_dirt"
+    },
+    "W": {
+      "item": "minecraft:water_bucket"
+    }
+  },
+  "pattern": [
+    "DDD",
+    "DWD",
+    "DDD"
+  ],
+  "result": {
+    "item": "wateringsponge:watering_sponge"
+  },
+  "show_notification": true
+}

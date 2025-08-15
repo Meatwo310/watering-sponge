@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "D": {
+      "item": "minecraft:coarse_dirt"
+    },
+    "L": {
+      "item": "minecraft:lava_bucket"
+    }
+  },
+  "pattern": [
+    "DDD",
+    "DLD",
+    "DDD"
+  ],
+  "result": {
+    "item": "wateringsponge:lava_sponge"
+  },
+  "show_notification": true
+}
