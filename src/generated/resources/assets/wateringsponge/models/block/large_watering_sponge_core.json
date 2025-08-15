@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "wateringsponge:block/large_watering_sponge_core"
+  }
+}

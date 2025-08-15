@@ -18,11 +18,24 @@ public class WSBlockStateGen extends BlockStateProvider {
     @Override
     protected void registerStatesAndModels() {
         registerWateringSponge();
+        registerLargeWateringSponge();
     }
 
     private void registerWateringSponge() {
         var block = WSBlocks.WATERING_SPONGE.get();
         String id = WSBlocks.WATERING_SPONGE.getId().getPath();
+        getVariantBuilder(block).forAllStates(state -> {
+            var name = "%s%s".formatted(id, state.getValue(WateringSpongeBlock.CORE) ? "_core" : "");
+            return ConfiguredModel.builder()
+                    .modelFile(models().cubeAll(name, modLoc("block/" + name)))
+                    .build();
+        });
+        simpleBlockItem(block, models().cubeAll(id, modLoc("block/" + id)));
+    }
+
+    private void registerLargeWateringSponge() {
+        var block = WSBlocks.LARGE_WATERING_SPONGE.get();
+        String id = WSBlocks.LARGE_WATERING_SPONGE.getId().getPath();
         getVariantBuilder(block).forAllStates(state -> {
             var name = "%s%s".formatted(id, state.getValue(WateringSpongeBlock.CORE) ? "_core" : "");
             return ConfiguredModel.builder()
