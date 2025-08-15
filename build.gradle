@@ -101,6 +101,8 @@ dependencies {
     //noinspection VulnerableLibrariesLocal
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
+
+    implementation fg.deobf("curse.maven:configured-457570:5180900")
 }
 
 mixin {
